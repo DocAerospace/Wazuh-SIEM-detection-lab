@@ -1,0 +1,23 @@
+<!-- Local rules -->
+<!-- Modify it at your will -->
+<!-- Copyright (C) 2015, Wazuh Inc. -->
+
+<group name="local,windows,sysmon">
+
+  <!-- Downgraded Windows privilege failure -->
+  <rule id="100107" level="3">
+    <if_matched_sid>60107</if_matched_sid>
+    <description>Privilege failure downgraded to informational (Expected Behavior)</description>
+  </rule>
+  
+  <!-- Rule for detection of encoded PowerShell execution -->
+  <rule id="100200" level="12">
+    <if_matched_sid>61603</if_matched_sid>
+    <match>(?i)(-enc|-encodedcommand)</match>
+    <description>Suspicious PowerShell encoded command execution</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+
+</group>
